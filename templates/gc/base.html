@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+    <div class="row-fluid">
+        <div class="span2">
+            <div class="well sidebar-nav">
+                <ul class="nav nav-list">
+                  <li class="nav-header">{{'Consorcios'}}</li>
+                    {% for parent in consorcios %}
+                        <li {% if consorcioid == parent.id %} class="active" {% endif %}><a href="{{ path('consorcios',{consorcioid:parent.id}) }}">{{ parent.consorcioname }}</a></li>
+                        <li {% if consorcioid == parent.id %} class="active" {% endif %}><a href="{{ path('propiedades',{consorcioid:parent.id}) }}">- Propiedades</a></li>                    
+                    {% endfor %}
+                </ul>
+              
+            </div>
+        </div>
+     <div class="span10">          
+     {% block actioncontent %}
+     {% endblock actioncontent %}
+     </div>
+  </div>
+
+{% endblock content %}

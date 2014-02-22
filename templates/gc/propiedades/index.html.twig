@@ -1,0 +1,21 @@
+{% extends 'gc/grid.html.twig' %}
+{% set active = 'consorcios' %}
+{% set collectionname = active %}
+
+{% block actioncontent %}
+<div class="row">
+
+    <div class="span12">          
+        <form action="{{path('propiedades',{consorcioid:firstconsorcioid})}}" method="post"> 
+            <div id="actions">
+                <a id="new" class="btn btn-primary" href="#">{{'New'}}</a>
+                <button type="submit" class="btn btn-success">{{'Save changed'}}</button>
+                <a id="btnCancel" class="btn btn-primary" href="{{path('propiedades',{consorcioid:firstconsorcioid})}}">{{'Cancel'}}</a>
+            </div>
+            {{ form_widget(form) }}
+        </form>    
+
+    </div>
+  </div>
+
+{% endblock actioncontent %}
