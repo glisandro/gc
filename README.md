@@ -1,4 +1,3 @@
-Silex-Northwind
+GC
 ===============
 
-Silex + Northwind db + Doctrine ORM + Twitter Bootstrap
