@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>{% block title '' %} - My Silex Application</title>
+        <title>{% block title '' %} - Gastos Comunes</title>
         <link href="{{ app.request.basepath }}/css/bootstrap.css" rel="stylesheet" type="text/css" />
         <link href="{{ app.request.basepath }}/css/bootstrap-responsive.css" rel="stylesheet" type="text/css" />
         <link href="{{ app.request.basepath }}/css/styles.css" rel="stylesheet" type="text/css" />
@@ -12,12 +12,12 @@
         <div class="navbar navbar-inversed navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container-fluid">
-                    <a class="brand" href="{{ path('homepage') }}">{{ 'Northwind' }}</a>
+                    <a class="brand" href="{{ path('homepage') }}">{{ 'Gastos Comunes' }}</a>
                     <div class="nav-collapse">
                         <ul class="nav">
                             <li {% if 'homepage' == active %}class="active"{% endif %}><a href="{{ path('homepage') }}">{{ 'Homepage' }}</a></li>
-                            <li {% if 'products' == active %}class="active"{% endif %}><a href="{{ path('products') }}">{{ 'Products' }}</a></li>
-
+                            <li {% if 'consorcios' == active %}class="active"{% endif %}><a href="{{ path('propiedades',{consorcioid:firstconsorcioid}) }}">{{ 'Consorcios' }}</a></li>
+                     
                         </ul>
                     </div><!--/.nav-collapse -->
                 </div>
@@ -35,8 +35,10 @@
                         </div>
                     {% endfor %}
                 {% endfor %}
+                
                 {% block content %}
                 {% endblock %}
+                
             </div>
         </div>
         

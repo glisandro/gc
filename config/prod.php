@@ -5,7 +5,7 @@
 $app['db.options'] = array(
     'driver'   => 'pdo_mysql',
     'host'     => 'localhost',
-    'dbname'   => 'northwind',
+    'dbname'   => 'gc',
     'user'     => 'root',
     'password' => '',
 );

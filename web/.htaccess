@@ -1,8 +1,7 @@
-<IfModule mod_rewrite.c>
-    Options -MultiViews
-
-    RewriteEngine On
-    RewriteBase /silex-northwind/web/
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^ index.php [L]
+<IfModule mod_rewrite.c>    
+	Options -MultiViews    
+	RewriteEngine On    
+	RewriteBase /gc.com.ar/web/    
+	RewriteCond %{REQUEST_FILENAME} !-f    
+	RewriteRule ^ index.php [L]
 </IfModule>
