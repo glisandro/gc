@@ -49,14 +49,14 @@ class Propiedad
      *
      * @Column(name="porcentualidadA", type="decimal", scale=2)
      */
-    private $porcentualidada;
+    private $porcentualidada = 0;
     
     /**
      * @var string
      *
      * @Column(name="porcentualidadB", type="decimal", scale=2)
      */
-    private $porcentualidadb;
+    private $porcentualidadb = 0;
 
     /**
      * @var \Consorcios
