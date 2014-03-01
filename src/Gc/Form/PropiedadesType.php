@@ -9,21 +9,26 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Constraints\Collection;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Gc\Entity\Propiedad;
+
 use Gc\Form;
 
 class PropiedadesType extends AbstractType
 {
-
+    
     public function getName()
     {
         return 'propiedades';
     }
     
+    public function __construct($consorcio) 
+    {
+        $this->consorcio = $consorcio;    
+    }
+    
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('propiedades', 'collection', array(
-            'type'           => new PropiedadType(),
+            'type'           => new PropiedadType($this->consorcio),
             'attr' => array('class' => 'table table-striped table-bordered table-hover'),
             //label for each team form type
             'prototype' => true,
@@ -36,7 +41,6 @@ class PropiedadesType extends AbstractType
               'attr' => array('class' => 'team-collection')
             ),
         )); 
-        
     }
     
     public function setDefaultOptions(OptionsResolverInterface $resolver)

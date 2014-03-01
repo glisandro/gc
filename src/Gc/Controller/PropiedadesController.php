@@ -20,20 +20,19 @@ class PropiedadesController{
     public function indexAction($consorcioid, Request $request, Application $app)
     {   
         $propiedades = $app['em']->getRepository('Gc\Entity\Propiedad')->getPropiedadesByConsorcio($consorcioid);
-        $form = $app['form.factory']->create(new PropiedadesType(), $propiedades);
+        $consorcio = $app['em']->getRepository('Gc\Entity\Consorcio')->find($consorcioid);
+       
+        $form = $app['form.factory']->create(new PropiedadesType($consorcio), $propiedades);
         
         if ($request->isMethod("POST")) {
             $form->bind($request);
             
             if ($form->isValid()) {
-                
+                    
                 $app['em']->flush();
                 
-                $memcache_obj = new \Memcache;
-                $memcache_obj->connect('localhost', 11211);
-                $memcache_obj->delete('prop_'.$consorcioid);
-                
                 $app['session']->getFlashBag()->add('success', 'Se editó correctamente');
+
                 return $app->redirect($app['url_generator']->generate('propiedades',array('consorcioid' => $consorcioid)));
             } else {
                 $app['session']->getFlashBag()->add('error', 'El formulario contiene errores.');
@@ -46,6 +45,5 @@ class PropiedadesController{
       
  
     }
-    
-    
+
 }
