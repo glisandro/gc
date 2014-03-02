@@ -43,26 +43,8 @@ $app->register(new FormServiceProvider());
 $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
     $app['db.options']
 ));
-/*
-$app->register(new KevinGH\Entities\EntitiesServiceProvider(), array(
-    'em.options' => array(
-        'flush_on_terminate' => false,
-        'mapping_paths' => array(
-            __DIR__ . '/GC/Entity'
-        ),
-        'proxy_dir' => __DIR__ . '/GC/Proxy',
-        'proxy_namespace' => 'GC\Proxy',
-        'proxy_auto_generate' => $app['debug']
-    )
-));*/
 
-$app->register(new Dominikzogg\Silex\Provider\DoctrineOrmManagerRegistryProvider());
-$app['form.extensions'] = $app->share(
-    $app->extend('form.extensions', function ($extensions, $app) {
-        $extensions[] = new Symfony\Bridge\Doctrine\Form\DoctrineOrmExtension($app['doctrine']);
-
-    return $extensions;
-}));
+$app->register(new Saxulum\DoctrineOrmManagerRegistry\Silex\Provider\DoctrineOrmManagerRegistryProvider());
 
 $app->register(new Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider(), array(
     "orm.proxies_dir" => __DIR__. "/Gc/Proxy",
@@ -77,6 +59,7 @@ $app->register(new Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider
         ),
     ),
 ));
+
 $app['em'] = $app['doctrine']->getManager('default');
 
 $app->register(new TranslationServiceProvider());
@@ -88,16 +71,5 @@ $app['translator'] = $app->share($app->extend('translator', function($translator
 $app->register(new Silex\Provider\TranslationServiceProvider(), array(
     'translator.messages' => array(),
 ));
-/* 
-$app['form.extensions'] = $app->share($app->extend('form.extensions', function ($extensions) use($app) {
-    $managerRegistry = new ManagerRegistry(null, array(), array('em'), null, null, '\Doctrine\ORM\Proxy\Proxy');
-    $managerRegistry->setContainer($app);
-    $extensions[] = new DoctrineOrmExtension($managerRegistry);
-     
-    return $extensions;
-}));
-*/
 
 $app->register(new SessionServiceProvider());
-
-//return $app;
